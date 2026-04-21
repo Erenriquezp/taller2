@@ -1,4 +1,4 @@
-package taller;
+package tarea2;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class TareaFiltrosAvanzados {
 
     public static void main(String[] args) {
-        File archivoEntrada = new File("src/taller/images/original.png");
+        File archivoEntrada = new File("src/tarea2/images/original.png");
 
         try {
             BufferedImage original = ImageIO.read(archivoEntrada);
@@ -20,37 +20,37 @@ public class TareaFiltrosAvanzados {
             System.out.println("Generando filtros de la tarea...");
 
             // 1. Vidrio Esmerilado
-            ImageIO.write(efectoVidrioEsmerilado(original), "png", new File("src/taller/images/1_vidrio_esmerilado.png"));
+            ImageIO.write(efectoVidrioEsmerilado(original), "png", new File("src/tarea2/images/1_vidrio_esmerilado.png"));
 
             // 2. Desvanecimiento Circular
-            ImageIO.write(efectoDesvanecimientoCircular(original), "png", new File("src/taller/images/2_desvanecimiento.png"));
+            ImageIO.write(efectoDesvanecimientoCircular(original), "png", new File("src/tarea2/images/2_desvanecimiento.png"));
 
             // 3. Efecto Retro 1
-            ImageIO.write(efectoRetro1(original, 2), "png", new File("src/taller/images/3_retro1_N2.png"));
-            ImageIO.write(efectoRetro1(original, 4), "png", new File("src/taller/images/3_retro1_N4.png"));
-            ImageIO.write(efectoRetro1(original, 8), "png", new File("src/taller/images/3_retro1_N8.png"));
-            ImageIO.write(efectoRetro1(original, 64), "png", new File("src/taller/images/3_retro1_N64.png"));
-            ImageIO.write(efectoRetro1(original, 128), "png", new File("src/taller/images/3_retro1_N128.png"));
-            ImageIO.write(efectoRetro1(original, 255), "png", new File("src/taller/images/3_retro1_N255.png"));
+            ImageIO.write(efectoRetro1(original, 2), "png", new File("src/tarea2/images/3_retro1_N2.png"));
+            ImageIO.write(efectoRetro1(original, 4), "png", new File("src/tarea2/images/3_retro1_N4.png"));
+            ImageIO.write(efectoRetro1(original, 8), "png", new File("src/tarea2/images/3_retro1_N8.png"));
+            ImageIO.write(efectoRetro1(original, 64), "png", new File("src/tarea2/images/3_retro1_N64.png"));
+            ImageIO.write(efectoRetro1(original, 128), "png", new File("src/tarea2/images/3_retro1_N128.png"));
+            ImageIO.write(efectoRetro1(original, 255), "png", new File("src/tarea2/images/3_retro1_N255.png"));
 
             // 4. Efecto Retro 2 (RG con N = 4, canal B se mantiene original)
-            ImageIO.write(efectoRetro2(original, 2, true, true, false), "png", new File("src/taller/images/4_retro2_N2_RG.png"));
-            ImageIO.write(efectoRetro2(original, 4, true, true, false), "png", new File("src/taller/images/4_retro2_N4_RG.png"));
-            ImageIO.write(efectoRetro2(original, 8, true, true, false), "png", new File("src/taller/images/4_retro2_N8_RG.png"));
-            ImageIO.write(efectoRetro2(original, 64, true, true, false), "png", new File("src/taller/images/4_retro2_N64_RG.png"));
-            ImageIO.write(efectoRetro2(original, 128, true, true, false), "png", new File("src/taller/images/4_retro2_N128_RG.png"));
-            ImageIO.write(efectoRetro2(original, 255, true, true, false), "png", new File("src/taller/images/4_retro2_N255_RG.png"));
+            ImageIO.write(efectoRetro2(original, 2, true, true, false), "png", new File("src/tarea2/images/4_retro2_N2_RG.png"));
+            ImageIO.write(efectoRetro2(original, 4, true, true, false), "png", new File("src/tarea2/images/4_retro2_N4_RG.png"));
+            ImageIO.write(efectoRetro2(original, 8, true, true, false), "png", new File("src/tarea2/images/4_retro2_N8_RG.png"));
+            ImageIO.write(efectoRetro2(original, 64, true, true, false), "png", new File("src/tarea2/images/4_retro2_N64_RG.png"));
+            ImageIO.write(efectoRetro2(original, 128, true, true, false), "png", new File("src/tarea2/images/4_retro2_N128_RG.png"));
+            ImageIO.write(efectoRetro2(original, 255, true, true, false), "png", new File("src/tarea2/images/4_retro2_N255_RG.png"));
 
             // 5. Blanco y Negro Puro
-            ImageIO.write(efectoBlancoYNegro(original), "png", new File("src/taller/images/5_blanco_negro.png"));
+            ImageIO.write(efectoBlancoYNegro(original), "png", new File("src/tarea2/images/5_blanco_negro.png"));
 
             // 6. Escala de Grises Cuantizada
-            ImageIO.write(efectoGrisesCuantizado(original, 2), "png", new File("src/taller/images/6_grises_N2.png"));
-            ImageIO.write(efectoGrisesCuantizado(original, 4), "png", new File("src/taller/images/6_grises_N4.png"));
-            ImageIO.write(efectoGrisesCuantizado(original, 8), "png", new File("src/taller/images/6_grises_N8.png"));
-            ImageIO.write(efectoGrisesCuantizado(original, 16), "png", new File("src/taller/images/6_grises_N64.png"));
-            ImageIO.write(efectoGrisesCuantizado(original, 128), "png", new File("src/taller/images/6_grises_N128.png"));
-            ImageIO.write(efectoGrisesCuantizado(original, 255), "png", new File("src/taller/images/6_grises_N255.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 2), "png", new File("src/tarea2/images/6_grises_N2.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 4), "png", new File("src/tarea2/images/6_grises_N4.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 8), "png", new File("src/tarea2/images/6_grises_N8.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 16), "png", new File("src/tarea2/images/6_grises_N64.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 128), "png", new File("src/tarea2/images/6_grises_N128.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 255), "png", new File("src/tarea2/images/6_grises_N255.png"));
 
             System.out.println("¡Todas las imágenes generadas con éxito!");
 
