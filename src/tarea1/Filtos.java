@@ -1,4 +1,4 @@
-package taller;
+package tarea1;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

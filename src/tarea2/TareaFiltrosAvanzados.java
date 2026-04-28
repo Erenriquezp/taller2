@@ -48,7 +48,7 @@ public class TareaFiltrosAvanzados {
             ImageIO.write(efectoGrisesCuantizado(original, 2), "png", new File("src/tarea2/images/6_grises_N2.png"));
             ImageIO.write(efectoGrisesCuantizado(original, 4), "png", new File("src/tarea2/images/6_grises_N4.png"));
             ImageIO.write(efectoGrisesCuantizado(original, 8), "png", new File("src/tarea2/images/6_grises_N8.png"));
-            ImageIO.write(efectoGrisesCuantizado(original, 16), "png", new File("src/tarea2/images/6_grises_N64.png"));
+            ImageIO.write(efectoGrisesCuantizado(original, 64), "png", new File("src/tarea2/images/6_grises_N64.png"));
             ImageIO.write(efectoGrisesCuantizado(original, 128), "png", new File("src/tarea2/images/6_grises_N128.png"));
             ImageIO.write(efectoGrisesCuantizado(original, 255), "png", new File("src/tarea2/images/6_grises_N255.png"));
 
