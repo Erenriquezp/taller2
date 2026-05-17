@@ -34,6 +34,15 @@ ImageIO.write(resultado, "png", salida);
 
 ---
 
+## 🆕 EJEMPLOS NUEVOS EN `practice`
+
+- `Histograma.java`: cuenta frecuencias RGB y dibuja el histograma con `Graphics2D`.
+- `MatrizColores.java`: aplica una matriz de color tipo sepia/grises por canal.
+- `Blending.java`: mezcla 2 imágenes con un factor `alpha`.
+- `TripleBlending.java`: mezcla 3 imágenes con pesos fijos.
+
+---
+
 ## 🎨 PLANTILLA DEGRADADOS (SIN IMAGEN)
 
 ```java
@@ -272,6 +281,55 @@ float[][] matriz = {
 ```
 Resultado: Efecto 3D
 
+### 15. **HISTOGRAMA RGB** - Frecuencia por canal
+```java
+int[] histoR = new int[256];
+int[] histoG = new int[256];
+int[] histoB = new int[256];
+
+int p = original.getRGB(x, y);
+histoR[(p >> 16) & 0xFF]++;
+histoG[(p >> 8) & 0xFF]++;
+histoB[p & 0xFF]++;
+```
+La altura de cada línea se normaliza con el máximo global para no deformar la gráfica.
+
+### 16. **MATRIZ DE COLORES** - Sepia / grises por multiplicación
+```java
+float[][] sepiaMatrix = {
+    {0.393f, 0.769f, 0.189f},
+    {0.349f, 0.686f, 0.168f},
+    {0.272f, 0.534f, 0.131f}
+};
+
+int nr = clamp((int) (sepiaMatrix[0][0] * r + sepiaMatrix[0][1] * g + sepiaMatrix[0][2] * b));
+int ng = clamp((int) (sepiaMatrix[1][0] * r + sepiaMatrix[1][1] * g + sepiaMatrix[1][2] * b));
+int nb = clamp((int) (sepiaMatrix[2][0] * r + sepiaMatrix[2][1] * g + sepiaMatrix[2][2] * b));
+```
+Regla mental: cada canal de salida es una suma ponderada de `r`, `g` y `b`.
+
+### 17. **BLENDING** - Mezcla de 2 imágenes
+```java
+float alpha = 0.3f; // peso del fondo
+
+int r = clamp((int) ((1 - alpha) * rO + alpha * rF));
+int g = clamp((int) ((1 - alpha) * gO + alpha * gF));
+int b = clamp((int) ((1 - alpha) * bO + alpha * bF));
+```
+Interpretación: `alpha = 0` deja solo la imagen original; `alpha = 1` deja solo el fondo.
+
+### 18. **TRIPLE BLENDING** - Mezcla de 3 imágenes
+```java
+float alpha1 = 0.5f;
+float alpha2 = 0.3f;
+float alpha3 = 0.2f;
+
+float resR = (r1 * alpha1) + (r2 * alpha2) + (r3 * alpha3);
+float resG = (g1 * alpha1) + (g2 * alpha2) + (g3 * alpha3);
+float resB = (b1 * alpha1) + (b2 * alpha2) + (b3 * alpha3);
+```
+Las ponderaciones deben sumar 1 para mantener el brillo general.
+
 ---
 
 ## 🎓 INFORMACIÓN DE REFERENCIA
@@ -389,5 +447,9 @@ int valor = (int) (t * 255);         // Mapea a [0 .. 255]
 | Reducción | Simple | Simple | No |
 | Convolución | Media/Alta | 3 anidados | No |
 | Degradados | Variable | Simple | No |
+| Histograma | Media | Simple | No |
+| Matriz de colores | Media | Simple | No |
+| Blending | Media | Simple | No |
+| Triple blending | Media | Simple | No |
 
 

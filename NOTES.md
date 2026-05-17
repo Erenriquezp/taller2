@@ -20,6 +20,12 @@ Objetivo: memorizar y entender el codigo del proyecto de forma simple.
 - `src/taller/ConvulucionOp.java`: convolucion con API de Java (`ConvolveOp`).
 - `src/taller/images/Kernels.java`: kernels predefinidos (normal, enfoque, blur, bordes, etc).
 
+- `src/practice/Plantilla.java`: plantilla base minima para memorizar el flujo completo.
+- `src/practice/Histograma.java`: histograma RGB con conteo por canal y dibujo con `Graphics2D`.
+- `src/practice/MatrizColores.java`: matriz de color tipo sepia/grises.
+- `src/practice/Blending.java`: mezcla de 2 imagenes con peso `alpha`.
+- `src/practice/TripleBlending.java`: mezcla de 3 imagenes con pesos fijos.
+
 - `src/tarea3/reduccion/RBitsBinario.java`: reducir a 4 bits y estirar en binario.
 - `src/tarea3/reduccion/RBitsDecimal.java`: reducir a 4 bits y estirar en decimal.
 - `src/tarea3/reduccion/RBitsHexadecimal.java`: reducir a 4 bits y estirar en hexadecimal.
@@ -207,6 +213,34 @@ Traduccion simple:
 - Mantiene luces/sombras originales.
 - Cambia el "tinte" global a azul, rojo, verde o lila.
 
+### 4.3 Nuevos ejemplos agregados en `practice`
+
+#### Histograma RGB (`src/practice/Histograma.java`)
+- Cuenta frecuencias con tres arreglos de 256 posiciones.
+- Dibuja líneas con `Graphics2D`.
+- Normaliza usando el mayor valor de los tres canales.
+
+#### Matriz de colores (`src/practice/MatrizColores.java`)
+- Cada canal de salida es una suma ponderada de `r`, `g` y `b`.
+- Ejemplo sepia:
+```text
+nr = 0.393r + 0.769g + 0.189b
+ng = 0.349r + 0.686g + 0.168b
+nb = 0.272r + 0.534g + 0.131b
+```
+
+#### Blending (`src/practice/Blending.java`)
+- Mezcla 2 imágenes con un peso `alpha` para el fondo.
+```text
+resultado = (1 - alpha) * original + alpha * fondo
+```
+
+#### Triple blending (`src/practice/TripleBlending.java`)
+- Mezcla 3 imágenes usando pesos fijos.
+```text
+resultado = img1 * 0.5 + img2 * 0.3 + img3 * 0.2
+```
+
 ---
 
 ## 5) Nivel alto: convolucion
@@ -325,6 +359,7 @@ Reducir niveles posibles de color para perder precision y simplificar paleta.
 - [ ] Se explicar cuantizacion (`step`, `nivel`, `round`).
 - [ ] Se explicar los 6 filtros avanzados de tarea2.
 - [ ] Se explicar degradados lineales y radial.
+- [ ] Se explicar histograma RGB, matrices de color y blending.
 - [ ] Se definir convolucion + kernels comunes.
 - [ ] Se comparar blur grande vs blur pequeno repetido.
 - [ ] Se explicar reduccion a 4 bits y estiramiento (binario/decimal/hex).
