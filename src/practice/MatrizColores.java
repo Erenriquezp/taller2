@@ -8,6 +8,7 @@ import java.io.IOException;
 public class MatrizColores {
 
     public static void main(String[] args) {
+
         File entrada = new File("src/practice/images/asa.png");
         File salida = new File("src/practice/images/salida_matriz_colores.png");
 

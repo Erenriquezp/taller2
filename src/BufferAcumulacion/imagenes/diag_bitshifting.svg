@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="600" viewBox="0 0 1280 600" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6B7B"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text x="640" y="58" text-anchor="middle" font-size="34" font-weight="700" fill="#3A6FD8">De píxel a canales: operaciones de bits</text>
+  <text x="640" y="92" text-anchor="middle" font-size="18" fill="#5B6B7B">Un entero de 32 bits guarda los cuatro canales; se separan desplazando y enmascarando.</text>
+
+  <!-- 32-bit pixel bar : x=140..1140 (1000), 4 segments of 250 -->
+  <text x="140" y="132" font-size="17" font-weight="600" fill="#25303B">pixel (int, 32 bits)</text>
+  <g stroke="#FFFFFF" stroke-width="3">
+    <rect x="140" y="146" width="250" height="92" fill="#E7EAEE"/>
+    <rect x="390" y="146" width="250" height="92" fill="#FBE4E2"/>
+    <rect x="640" y="146" width="250" height="92" fill="#E3F3E6"/>
+    <rect x="890" y="146" width="250" height="92" fill="#E2ECFB"/>
+  </g>
+  <!-- colored top edges -->
+  <g stroke-width="5">
+    <line x1="140" y1="148" x2="390" y2="148" stroke="#9AA5B1"/>
+    <line x1="390" y1="148" x2="640" y2="148" stroke="#D9534F"/>
+    <line x1="640" y1="148" x2="890" y2="148" stroke="#3DA45B"/>
+    <line x1="890" y1="148" x2="1140" y2="148" stroke="#3A6FD8"/>
+  </g>
+  <rect x="140" y="146" width="1000" height="92" fill="none" stroke="#C7D2E2" stroke-width="1.5"/>
+
+  <g text-anchor="middle">
+    <text x="265" y="196" font-size="22" font-weight="700" fill="#5B6B7B">ALPHA</text>
+    <text x="515" y="196" font-size="22" font-weight="700" fill="#C0392B">ROJO</text>
+    <text x="765" y="196" font-size="22" font-weight="700" fill="#2E7D45">VERDE</text>
+    <text x="1015" y="196" font-size="22" font-weight="700" fill="#2B53A8">AZUL</text>
+  </g>
+  <g text-anchor="middle" font-size="14" fill="#8A97A6">
+    <text x="265" y="222">8 bits</text>
+    <text x="515" y="222">8 bits</text>
+    <text x="765" y="222">8 bits</text>
+    <text x="1015" y="222">8 bits</text>
+  </g>
+
+  <!-- arrows down -->
+  <g stroke="#5B6B7B" stroke-width="2">
+    <line x1="265" y1="246" x2="265" y2="288" marker-end="url(#arr2)"/>
+    <line x1="515" y1="246" x2="515" y2="288" marker-end="url(#arr2)"/>
+    <line x1="765" y1="246" x2="765" y2="288" marker-end="url(#arr2)"/>
+    <line x1="1015" y1="246" x2="1015" y2="288" marker-end="url(#arr2)"/>
+  </g>
+
+  <!-- extraction formula chips -->
+  <g font-family="'Consolas','Courier New',monospace" font-size="16" text-anchor="middle">
+    <rect x="150" y="296" width="230" height="46" rx="9" fill="#F4F7FC" stroke="#C7D6F2" stroke-width="1.5"/>
+    <text x="265" y="324" fill="#25303B">(pixel &gt;&gt; 24) &amp; 0xFF</text>
+    <rect x="400" y="296" width="230" height="46" rx="9" fill="#F4F7FC" stroke="#C7D6F2" stroke-width="1.5"/>
+    <text x="515" y="324" fill="#25303B">(pixel &gt;&gt; 16) &amp; 0xFF</text>
+    <rect x="650" y="296" width="230" height="46" rx="9" fill="#F4F7FC" stroke="#C7D6F2" stroke-width="1.5"/>
+    <text x="765" y="324" fill="#25303B">(pixel &gt;&gt; 8) &amp; 0xFF</text>
+    <rect x="900" y="296" width="230" height="46" rx="9" fill="#F4F7FC" stroke="#C7D6F2" stroke-width="1.5"/>
+    <text x="1015" y="324" fill="#25303B">pixel &amp; 0xFF</text>
+  </g>
+
+  <!-- reconstruction -->
+  <rect x="290" y="392" width="700" height="56" rx="12" fill="#EAF1FE" stroke="#3A6FD8" stroke-width="2"/>
+  <text x="340" y="426" font-size="17" font-weight="700" fill="#3A6FD8">Reconstruir:</text>
+  <text x="470" y="426" font-family="'Consolas','Courier New',monospace" font-size="18" fill="#25303B">(a&lt;&lt;24) | (r&lt;&lt;16) | (g&lt;&lt;8) | b</text>
+
+  <!-- index mapping -->
+  <rect x="290" y="466" width="700" height="56" rx="12" fill="#F4F7FC" stroke="#C7D6F2" stroke-width="1.5"/>
+  <text x="340" y="500" font-size="17" font-weight="700" fill="#5B6B7B">Buffer 1D:</text>
+  <text x="455" y="500" font-family="'Consolas','Courier New',monospace" font-size="18" fill="#25303B">index = y * ancho + x</text>
+</svg>

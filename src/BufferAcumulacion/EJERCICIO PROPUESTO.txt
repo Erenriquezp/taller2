@@ -1,0 +1,6 @@
+EJERCICIO PROPUESTO
+"Implementar un filtro de transición Día → Noche utilizando la operación GL_MULT del Buffer de Acumulación. El programa debe generar 4 imágenes con factores de intensidad 1.0, 0.75, 0.50 y 0.25."
+-----------------------------------------
+RESOLUCIÓN DEL EJERCICIO		|
+Dentro del proyecto BufferAcumulacion	|
+-----------------------------------------

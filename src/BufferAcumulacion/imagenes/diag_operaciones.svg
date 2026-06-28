@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <filter id="soft3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="9" flood-color="#1b2a4a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="seq" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3A6FD8"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text x="640" y="60" text-anchor="middle" font-size="36" font-weight="700" fill="#3A6FD8">Las cinco operaciones del buffer</text>
+  <text x="640" y="96" text-anchor="middle" font-size="18" fill="#5B6B7B">Una sola función con una constante de operación y un factor escalar.</text>
+
+  <!-- ============ CARDS ============ -->
+  <!-- card geometry: width 230, gap 12.5, start x=46, y=132, height 410 -->
+
+  <!-- CARD 1: GL_LOAD (blue) -->
+  <g filter="url(#soft3)"><rect x="46" y="132" width="230" height="410" rx="16" fill="#FFFFFF" stroke="#E4E9F2" stroke-width="2"/></g>
+  <path d="M46,148 a16,16 0 0 1 16,-16 h198 a16,16 0 0 1 16,16 v50 h-230 z" fill="#3A6FD8"/>
+  <circle cx="78" cy="138" r="19" fill="#FFFFFF" stroke="#3A6FD8" stroke-width="2.5"/>
+  <text x="78" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#3A6FD8">1</text>
+  <text x="172" y="186" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="20" font-weight="700" fill="#FFFFFF">GL_LOAD</text>
+  <text x="161" y="240" text-anchor="middle" font-size="19" font-weight="700" fill="#3A6FD8">Inicializar</text>
+  <rect x="64" y="258" width="194" height="44" rx="9" fill="#EAF1FE" stroke="#C7D6F2" stroke-width="1.5"/>
+  <text x="161" y="286" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="16" fill="#25303B">acum = img &#215; f</text>
+  <text x="161" y="346" text-anchor="middle" font-size="15" fill="#5B6B7B"><tspan x="161" dy="0">Reemplaza el contenido</tspan><tspan x="161" dy="22">del buffer. Es siempre</tspan><tspan x="161" dy="22">el primer paso de la</tspan><tspan x="161" dy="22">secuencia (con f = 1.0).</tspan></text>
+
+  <!-- CARD 2: GL_ACCUM (blue) -->
+  <g filter="url(#soft3)"><rect x="288.5" y="132" width="230" height="410" rx="16" fill="#FFFFFF" stroke="#E4E9F2" stroke-width="2"/></g>
+  <path d="M288.5,148 a16,16 0 0 1 16,-16 h198 a16,16 0 0 1 16,16 v50 h-230 z" fill="#3A6FD8"/>
+  <circle cx="320.5" cy="138" r="19" fill="#FFFFFF" stroke="#3A6FD8" stroke-width="2.5"/>
+  <text x="320.5" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#3A6FD8">2</text>
+  <text x="414.5" y="186" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="20" font-weight="700" fill="#FFFFFF">GL_ACCUM</text>
+  <text x="403.5" y="240" text-anchor="middle" font-size="19" font-weight="700" fill="#3A6FD8">Acumular</text>
+  <rect x="306.5" y="258" width="194" height="44" rx="9" fill="#EAF1FE" stroke="#C7D6F2" stroke-width="1.5"/>
+  <text x="403.5" y="286" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="16" fill="#25303B">acum += img &#215; f</text>
+  <text x="403.5" y="346" text-anchor="middle" font-size="15" fill="#5B6B7B"><tspan x="403.5" dy="0">Suma ponderada de la</tspan><tspan x="403.5" dy="22">imagen. Es el bucle</tspan><tspan x="403.5" dy="22">central: N veces con</tspan><tspan x="403.5" dy="22">f = 1/N da el promedio.</tspan></text>
+  <text x="403.5" y="452" text-anchor="middle" font-size="13" font-weight="700" fill="#2B53A8">&#8635; operación central</text>
+
+  <!-- CARD 3: GL_ADD (slate) -->
+  <g filter="url(#soft3)"><rect x="531" y="132" width="230" height="410" rx="16" fill="#FFFFFF" stroke="#E4E9F2" stroke-width="2"/></g>
+  <path d="M531,148 a16,16 0 0 1 16,-16 h198 a16,16 0 0 1 16,16 v50 h-230 z" fill="#5B6B7B"/>
+  <circle cx="563" cy="138" r="19" fill="#FFFFFF" stroke="#5B6B7B" stroke-width="2.5"/>
+  <text x="563" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#5B6B7B">3</text>
+  <text x="657" y="186" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="20" font-weight="700" fill="#FFFFFF">GL_ADD</text>
+  <text x="646" y="240" text-anchor="middle" font-size="19" font-weight="700" fill="#5B6B7B">Sesgo (bias)</text>
+  <rect x="549" y="258" width="194" height="44" rx="9" fill="#F4F7FC" stroke="#D7DEE8" stroke-width="1.5"/>
+  <text x="646" y="286" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="16" fill="#25303B">acum += c</text>
+  <text x="646" y="346" text-anchor="middle" font-size="15" fill="#5B6B7B"><tspan x="646" dy="0">Suma una constante a</tspan><tspan x="646" dy="22">todos los píxeles.</tspan><tspan x="646" dy="22">No lee el color buffer.</tspan><tspan x="646" dy="22">Desplaza el rango.</tspan></text>
+
+  <!-- CARD 4: GL_MULT (slate) -->
+  <g filter="url(#soft3)"><rect x="773.5" y="132" width="230" height="410" rx="16" fill="#FFFFFF" stroke="#E4E9F2" stroke-width="2"/></g>
+  <path d="M773.5,148 a16,16 0 0 1 16,-16 h198 a16,16 0 0 1 16,16 v50 h-230 z" fill="#5B6B7B"/>
+  <circle cx="805.5" cy="138" r="19" fill="#FFFFFF" stroke="#5B6B7B" stroke-width="2.5"/>
+  <text x="805.5" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#5B6B7B">4</text>
+  <text x="899.5" y="186" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="20" font-weight="700" fill="#FFFFFF">GL_MULT</text>
+  <text x="888.5" y="240" text-anchor="middle" font-size="19" font-weight="700" fill="#5B6B7B">Escalar</text>
+  <rect x="791.5" y="258" width="194" height="44" rx="9" fill="#F4F7FC" stroke="#D7DEE8" stroke-width="1.5"/>
+  <text x="888.5" y="286" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="16" fill="#25303B">acum &#215;= c</text>
+  <text x="888.5" y="346" text-anchor="middle" font-size="15" fill="#5B6B7B"><tspan x="888.5" dy="0">Multiplica el buffer por</tspan><tspan x="888.5" dy="22">un factor. No lee el</tspan><tspan x="888.5" dy="22">color buffer. Ideal para</tspan><tspan x="888.5" dy="22">efectos de estela.</tspan></text>
+
+  <!-- CARD 5: GL_RETURN (blue) -->
+  <g filter="url(#soft3)"><rect x="1016" y="132" width="230" height="410" rx="16" fill="#FFFFFF" stroke="#E4E9F2" stroke-width="2"/></g>
+  <path d="M1016,148 a16,16 0 0 1 16,-16 h198 a16,16 0 0 1 16,16 v50 h-230 z" fill="#3A6FD8"/>
+  <circle cx="1048" cy="138" r="19" fill="#FFFFFF" stroke="#3A6FD8" stroke-width="2.5"/>
+  <text x="1048" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#3A6FD8">5</text>
+  <text x="1142" y="186" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="19" font-weight="700" fill="#FFFFFF">GL_RETURN</text>
+  <text x="1131" y="240" text-anchor="middle" font-size="19" font-weight="700" fill="#3A6FD8">Mostrar</text>
+  <rect x="1034" y="258" width="194" height="44" rx="9" fill="#EAF1FE" stroke="#C7D6F2" stroke-width="1.5"/>
+  <text x="1131" y="285" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="13" fill="#25303B">clamp(acum&#215;f, 0,1)</text>
+  <text x="1131" y="346" text-anchor="middle" font-size="15" fill="#5B6B7B"><tspan x="1131" dy="0">Escala, recorta (clamp)</tspan><tspan x="1131" dy="22">al rango y copia al</tspan><tspan x="1131" dy="22">color buffer visible.</tspan><tspan x="1131" dy="22">El último paso.</tspan></text>
+
+  <!-- ============ SEQUENCE RIBBON ============ -->
+  <text x="100" y="600" font-size="18" font-weight="700" fill="#25303B">Secuencia típica:</text>
+  <g font-family="'Consolas','Courier New',monospace" font-size="18" font-weight="700">
+    <rect x="300" y="578" width="120" height="40" rx="20" fill="#EAF1FE" stroke="#3A6FD8" stroke-width="2"/>
+    <text x="360" y="604" text-anchor="middle" fill="#2B53A8">LOAD</text>
+    <line x1="424" y1="598" x2="470" y2="598" stroke="#3A6FD8" stroke-width="2.5" marker-end="url(#seq)"/>
+    <rect x="474" y="578" width="190" height="40" rx="20" fill="#EAF1FE" stroke="#3A6FD8" stroke-width="2"/>
+    <text x="569" y="604" text-anchor="middle" fill="#2B53A8">ACCUM &#215; N  &#8635;</text>
+    <line x1="668" y1="598" x2="714" y2="598" stroke="#3A6FD8" stroke-width="2.5" marker-end="url(#seq)"/>
+    <rect x="718" y="578" width="130" height="40" rx="20" fill="#EAF1FE" stroke="#3A6FD8" stroke-width="2"/>
+    <text x="783" y="604" text-anchor="middle" fill="#2B53A8">RETURN</text>
+  </g>
+  <text x="900" y="604" font-size="15" fill="#5B6B7B">ADD y MULT ajustan sin leer la imagen.</text>
+</svg>

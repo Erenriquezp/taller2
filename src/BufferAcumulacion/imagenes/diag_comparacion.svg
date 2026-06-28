@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#1b2a4a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- title -->
+  <text x="640" y="62" text-anchor="middle" font-size="34" font-weight="700" fill="#3A6FD8">Color Buffer Normal vs. Buffer de Acumulación</text>
+
+  <!-- table card -->
+  <g filter="url(#soft2)">
+    <rect x="60" y="100" width="1160" height="490" rx="18" fill="#FFFFFF" stroke="#E4E9F2" stroke-width="2"/>
+  </g>
+
+  <!-- column geometry: c1=60..420 (360), c2=420..820 (400), c3=820..1220 (400) -->
+  <!-- highlight column 3 -->
+  <rect x="820" y="172" width="400" height="418" fill="#EAF1FE"/>
+
+  <!-- header -->
+  <rect x="60" y="100" width="1160" height="72" rx="18" fill="#3A6FD8"/>
+  <rect x="60" y="140" width="1160" height="32" fill="#3A6FD8"/>
+  <text x="240"  y="145" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">Característica</text>
+  <text x="620"  y="145" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">Color Buffer Normal</text>
+  <text x="1020" y="145" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">Buffer de Acumulación</text>
+
+  <!-- row backgrounds (alt) : rows start y=172, height 83.6 ; 5 rows -->
+  <rect x="60" y="172"   width="760" height="83.6" fill="#FFFFFF"/>
+  <rect x="60" y="255.6" width="760" height="83.6" fill="#F4F7FC"/>
+  <rect x="60" y="339.2" width="760" height="83.6" fill="#FFFFFF"/>
+  <rect x="60" y="422.8" width="760" height="83.6" fill="#F4F7FC"/>
+  <rect x="60" y="506.4" width="760" height="83.6" fill="#FFFFFF"/>
+
+  <!-- row separators -->
+  <g stroke="#E4E9F2" stroke-width="1.5">
+    <line x1="60" y1="255.6" x2="1220" y2="255.6"/>
+    <line x1="60" y1="339.2" x2="1220" y2="339.2"/>
+    <line x1="60" y1="422.8" x2="1220" y2="422.8"/>
+    <line x1="60" y1="506.4" x2="1220" y2="506.4"/>
+  </g>
+  <!-- column separators -->
+  <g stroke="#E4E9F2" stroke-width="1.5">
+    <line x1="420" y1="172" x2="420" y2="590"/>
+    <line x1="820" y1="172" x2="820" y2="590"/>
+  </g>
+
+  <!-- row labels (col1, bold ink) -->
+  <g font-size="20" font-weight="600" fill="#25303B">
+    <text x="90" y="220">Rango de valores</text>
+    <text x="90" y="303.6">Precisión por componente</text>
+    <text x="90" y="387.2">Valores negativos</text>
+    <text x="90" y="470.8">Aceleración por hardware</text>
+    <text x="90" y="554.4">Operaciones</text>
+  </g>
+
+  <!-- col2 values -->
+  <g font-size="20" fill="#5B6B7B" text-anchor="middle">
+    <text x="620" y="220">[0, 1]</text>
+    <text x="620" y="303.6">8 bits (típico)</text>
+    <text x="620" y="387.2">No</text>
+    <text x="620" y="470.8">Alta</text>
+    <text x="620" y="554.4">Blend, lógicas, etc.</text>
+  </g>
+
+  <!-- col3 values (accent emphasis) -->
+  <g font-size="20" font-weight="600" fill="#2B53A8" text-anchor="middle">
+    <text x="1020" y="220">[-1, 1]</text>
+    <text x="1020" y="303.6">16 bits o más</text>
+    <text x="1020" y="387.2">Sí (nativo)</text>
+    <text x="1020" y="470.8">Limitada</text>
+    <text x="1020" y="551" font-size="16">LOAD &#183; ACCUM &#183; ADD</text>
+    <text x="1020" y="572" font-size="16">MULT &#183; RETURN</text>
+  </g>
+</svg>

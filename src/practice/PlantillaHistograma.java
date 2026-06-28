@@ -15,29 +15,29 @@ public class PlantillaHistograma {
         File salida = new File("src/practice/images/salida_hist_simple.png");
 
         try {
-            BufferedImage img = ImageIO.read(entrada);
+            BufferedImage original = ImageIO.read(entrada);
 
             int[] histR = new int[256];
             int[] histG = new int[256];
             int[] histB = new int[256];
-            int ancho = img.getWidth();
-            int alto = img.getHeight();
+            int ancho = original.getWidth();
+            int alto = original.getHeight();
 
             // Contar píxeles por canal
             for (int y = 0; y < alto; y++) {
                 for (int x = 0; x < ancho; x++) {
-                    int p = img.getRGB(x, y);
-                    histR[(p >> 16) & 0xFF]++;
-                    histG[(p >> 8) & 0xFF]++;
-                    histB[p & 0xFF]++;
+                    int pixel = original.getRGB(x, y);
+                    histR[(pixel >> 16) & 0xFF]++;
+                    histG[(pixel >> 8) & 0xFF]++;
+                    histB[pixel & 0xFF]++;
                 }
             }
 
             // Crear imagen de salida
             int anchoH = 600;
             int altoH = 400;
-            BufferedImage out = new BufferedImage(anchoH, altoH, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2 = out.createGraphics();
+            BufferedImage hist = new BufferedImage(anchoH, altoH, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = hist.createGraphics();
             g2.setColor(Color.BLACK);
             g2.fillRect(0, 0, anchoH, altoH);
 
@@ -53,20 +53,20 @@ public class PlantillaHistograma {
             dibujarHistograma(g2, histB, Color.BLUE, escalaX, escalaY, altoH);
 
             g2.dispose();
-            ImageIO.write(out, "png", salida);
+            ImageIO.write(hist, "png", salida);
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
     }
 
     private static void dibujarHistograma(Graphics2D g2, int[] hist, Color color,
-                                          double escalaX, double escalaY, int outH) {
+                                          double escalaX, double escalaY, int altoH) {
         g2.setColor(color);
         for (int i = 1; i < 256; i++) {
             int x1 = (int) (escalaX * (i - 1));
             int x2 = (int) (escalaX * i);
-            int y1 = outH - (int) (hist[i - 1] * escalaY);
-            int y2 = outH - (int) (hist[i] * escalaY);
+            int y1 = altoH - (int) (hist[i - 1] * escalaY);
+            int y2 = altoH - (int) (hist[i] * escalaY);
             g2.drawLine(x1, y1, x2, y2);
         }
     }
