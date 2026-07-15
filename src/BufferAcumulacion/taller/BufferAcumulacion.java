@@ -10,7 +10,7 @@ public class BufferAcumulacion {
     public static void main(String[] args) {
 
         // Imagen de entrada
-        File archivoOriginal = new File("src/BufferAcumulacion/imagenes/taza.jpg");
+        File archivoOriginal = new File("src/BufferAcumulacion/imagenes/taza.jpeg");
 
         // Imagen donde se guardará el resultado
         File archivoNuevo = new File("src/BufferAcumulacion/imagenes/tazaBufferAcumulacion.jpg");
