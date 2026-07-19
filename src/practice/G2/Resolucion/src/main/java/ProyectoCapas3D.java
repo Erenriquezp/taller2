@@ -25,11 +25,11 @@ public class ProyectoCapas3D extends JFrame {
     private JSlider zSlider;
     private JSlider alphaSlider;
     private JSlider rSlider, gSlider, bSlider;
-    
+
     private JCheckBox depthTestCheck;
     private JCheckBox depthMapCheck;
     private JCheckBox texturesCheck;
-    
+
     private RenderPanel renderPanel;
     private boolean isUpdating = false;
 
@@ -193,10 +193,10 @@ public class ProyectoCapas3D extends JFrame {
             gl.glClearColor(0.082f, 0.082f, 0.082f, 1.0f);
             gl.glEnable(GL2.GL_DEPTH_TEST);
             gl.glDepthFunc(GL2.GL_LEQUAL);
-            
+
             gl.glEnable(GL2.GL_BLEND);
             gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
-            
+
             gl.glEnable(GL2.GL_TEXTURE_2D);
             cargarTexturasJOGL(gl);
         }
@@ -231,7 +231,7 @@ public class ProyectoCapas3D extends JFrame {
         @Override
         public void display(GLAutoDrawable drawable) {
             GL2 gl = drawable.getGL().getGL2();
-            
+
             if (depthMapEnabled) {
                 gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             } else {
@@ -255,7 +255,7 @@ public class ProyectoCapas3D extends JFrame {
                 double layerZ = zValues[i];
                 int alpha = alphas[i];
                 Color tint = colors[i];
-                
+
                 float r = tint.getRed() / 255.0f;
                 float g = tint.getGreen() / 255.0f;
                 float b = tint.getBlue() / 255.0f;
@@ -287,17 +287,17 @@ public class ProyectoCapas3D extends JFrame {
                     float intRight = (float) (1.0 - (zRight - minZ) / (maxZ - minZ));
                     intLeft = Math.max(0.0f, Math.min(1.0f, intLeft));
                     intRight = Math.max(0.0f, Math.min(1.0f, intRight));
-                    
+
                     gl.glBegin(GL2.GL_QUADS);
                         gl.glColor4f(intLeft, intLeft, intLeft, 1.0f);
                         gl.glVertex3d(xLeft, yTop, -zLeft);
-                        
+
                         gl.glColor4f(intRight, intRight, intRight, 1.0f);
                         gl.glVertex3d(xRight, yTop, -zRight);
-                        
+
                         gl.glColor4f(intRight, intRight, intRight, 1.0f);
                         gl.glVertex3d(xRight, yBottom, -zRight);
-                        
+
                         gl.glColor4f(intLeft, intLeft, intLeft, 1.0f);
                         gl.glVertex3d(xLeft, yBottom, -zLeft);
                     gl.glEnd();
@@ -305,13 +305,13 @@ public class ProyectoCapas3D extends JFrame {
                     gl.glBegin(GL2.GL_QUADS);
                         gl.glTexCoord2f(0.0f, 0.0f);
                         gl.glVertex3d(xLeft, yTop, -zLeft);
-                        
+
                         gl.glTexCoord2f(1.0f, 0.0f);
                         gl.glVertex3d(xRight, yTop, -zRight);
-                        
+
                         gl.glTexCoord2f(1.0f, 1.0f);
                         gl.glVertex3d(xRight, yBottom, -zRight);
-                        
+
                         gl.glTexCoord2f(0.0f, 1.0f);
                         gl.glVertex3d(xLeft, yBottom, -zLeft);
                     gl.glEnd();
@@ -323,16 +323,16 @@ public class ProyectoCapas3D extends JFrame {
         public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
             GL2 gl = drawable.getGL().getGL2();
             if (height <= 0) height = 1;
-            
+
             gl.glViewport(0, 0, width, height);
             gl.glMatrixMode(GL2.GL_PROJECTION);
             gl.glLoadIdentity();
-            
+
             double w = width;
             double h = height;
             double nearVal = 0.05;
             gl.glFrustum(-w/2.0 * nearVal, w/2.0 * nearVal, h/2.0 * nearVal, -h/2.0 * nearVal, nearVal, 50.0);
-            
+
             gl.glMatrixMode(GL2.GL_MODELVIEW);
             gl.glLoadIdentity();
         }

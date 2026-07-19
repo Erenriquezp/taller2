@@ -7,17 +7,14 @@ import java.io.IOException;
 
 public class Convolucion9 {
     public static void main(String[] args) {
+        File archivoEntrada = new File("jennie.jpg");
 
-        File archivoEntrada = new File("src/convolucion/jennie.jpg");
-
-        // Kernel 3x3 (tu blur)
         float[] matriz = {
                 1f/9, 1f/9, 1f/9,
                 1f/9, 1f/9, 1f/9,
                 1f/9, 1f/9, 1f/9
         };
 
-        // Kernel 9x9 (promedio)
         float[] matriz9 = new float[81];
         for (int i = 0; i < 81; i++) {
             matriz9[i] = 1f / 81;
@@ -28,9 +25,7 @@ public class Convolucion9 {
             int ancho = imagenOriginal.getWidth();
             int alto = imagenOriginal.getHeight();
 
-            // =========================
             // 1. BLUR 9x9
-            // =========================
             BufferedImage resultado9 = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 
             for (int y = 4; y < alto - 4; y++) {
@@ -64,15 +59,11 @@ public class Convolucion9 {
                 }
             }
 
-            // =========================
             // 2. BLUR 3x3 REPETIDO 9 VECES
-            // =========================
             BufferedImage repetido = imagenOriginal;
 
             for (int iter = 0; iter < 9; iter++) {
-
                 BufferedImage temp = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
-
                 for (int y = 1; y < alto - 1; y++) {
                     for (int x = 1; x < ancho - 1; x++) {
 
@@ -107,9 +98,6 @@ public class Convolucion9 {
                 repetido = temp; // importante: encadenar resultado
             }
 
-            // =========================
-            // GUARDAR RESULTADOS
-            // =========================
             ImageIO.write(resultado9, "jpg", new File("src/convolucion/blur9x9.jpg"));
             ImageIO.write(repetido, "jpg", new File("src/convolucion/blur_repetido.jpg"));
 

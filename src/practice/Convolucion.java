@@ -6,8 +6,8 @@ import java.io.File;
 
 public class Convolucion {
     public static void main(String[] args) throws Exception {
-        File entrada = new File("src/practice/images/original2.png");
-        File salida = new File("src/practice/images/salida_convolucion.png");
+        File entrada = new File("original2.png");
+        File salida = new File("salida_convolucion.png");
 
         float[][] matriz = {
                 {1f / 9f, 1f / 9f, 1f / 9f},
@@ -16,7 +16,6 @@ public class Convolucion {
         };
 
         BufferedImage imagenOriginal = ImageIO.read(entrada);
-        if (imagenOriginal == null) throw new IllegalArgumentException("No se pudo leer: " + entrada.getPath());
 
         int ancho = imagenOriginal.getWidth();
         int alto = imagenOriginal.getHeight();
@@ -50,11 +49,8 @@ public class Convolucion {
                 resultado.setRGB(x, y, pixelNuevo);
             }
         }
-
         ImageIO.write(resultado, "png", salida);
-        System.out.println("Convolucion generada en: " + salida.getPath());
     }
-
     private static int clamp(int v) {
         return Math.max(0, Math.min(255, v));
     }

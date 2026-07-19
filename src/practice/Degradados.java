@@ -30,7 +30,5 @@ public class Degradados {
 
         File archivoSalida = new File("src/practice/images/degradado_right.png");
         ImageIO.write(salida, "png", archivoSalida);
-
-        System.out.println("Degradado generado en: " + archivoSalida.getPath());
     }
 }

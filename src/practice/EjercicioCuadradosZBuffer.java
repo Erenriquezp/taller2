@@ -23,7 +23,6 @@ public class EjercicioCuadradosZBuffer extends JPanel {
                 zBuffer[x][y] = 1.0f;
             }
         }
-
         // 2. Dibujar dos cuadrados: Posición (x, y), Tamaño, Profundidad, Color
         dibujarCuadrado(100, 100, 200, zA, Color.CYAN);
         dibujarCuadrado(250, 200, 200, zB, Color.MAGENTA);

@@ -7,15 +7,11 @@ import java.io.IOException;
 
 public class DesvanecimientoCircular {
     public static void main(String[] args) {
-        File entrada = new File("src/practice/images/original2.png");
-        File salida  = new File("src/practice/images/desvanecimiento.png");
+        File entrada = new File("original2.png");
+        File salida  = new File("desvanecimiento.png");
 
         try {
             BufferedImage original = ImageIO.read(entrada);
-            if (original == null) {
-                System.out.println("No se pudo leer la imagen.");
-                return;
-            }
 
             int ancho = original.getWidth();
             int alto  = original.getHeight();
@@ -45,10 +41,7 @@ public class DesvanecimientoCircular {
                     resultado.setRGB(x, y, pixelNuevo);
                 }
             }
-
             ImageIO.write(resultado, "png", salida);
-            System.out.println("Desvanecimiento circular aplicado. Guardado en: " + salida.getPath());
-
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }

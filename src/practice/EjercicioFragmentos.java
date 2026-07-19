@@ -7,21 +7,18 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class EjercicioFragmentos {
-
     public static void main(String[] args) {
-
         try {
-
             // Cargar imágenes
-            BufferedImage img1 = ImageIO.read(new File("src/Imagenes/Minion.jpg"));
-            BufferedImage img2 = ImageIO.read(new File("src/Imagenes/perro.jpg"));
+            BufferedImage img1 = ImageIO.read(new File("Minion.jpg"));
+            BufferedImage img2 = ImageIO.read(new File("perro.jpg"));
 
             // Crear máscara (Stencil)
             BufferedImage mascara = crearStencil(img1.getWidth(), img1.getHeight());
 
             // Aplicar Stencil
             BufferedImage stencil = aplicarStencil(img1, mascara);
-            ImageIO.write(stencil, "jpg", new File("src/Imagenes/Stencil.jpg"));
+            ImageIO.write(stencil, "jpg", new File("Stencil.jpg"));
 
             // Redimensionar la segunda imagen
             BufferedImage img2Red = new BufferedImage(
@@ -35,13 +32,11 @@ public class EjercicioFragmentos {
 
             // Aplicar Blending
             BufferedImage blending = aplicarBlending(stencil, img2Red, 0.6f);
-            ImageIO.write(blending, "jpg", new File("src/Imagenes/Blending.jpg"));
+            ImageIO.write(blending, "jpg", new File("Blending.jpg"));
 
             // Aplicar XOR
             BufferedImage resultado = aplicarXOR(blending, img2Red);
-            ImageIO.write(resultado, "jpg", new File("src/Imagenes/ResultadoFinal.jpg"));
-
-            System.out.println("Proceso terminado.");
+            ImageIO.write(resultado, "jpg", new File("ResultadoFinal.jpg"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,17 +45,12 @@ public class EjercicioFragmentos {
 
     // Crear una máscara rectangular
     public static BufferedImage crearStencil(int ancho, int alto) {
-
         BufferedImage mascara = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
-
         Graphics2D g = mascara.createGraphics();
-
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, ancho, alto);
-
         g.setColor(Color.WHITE);
         g.fillRect(ancho / 4, alto / 4, ancho / 2, alto / 2);
-
         g.dispose();
 
         return mascara;
@@ -68,28 +58,19 @@ public class EjercicioFragmentos {
 
     // STENCIL TEST
     public static BufferedImage aplicarStencil(BufferedImage imagen, BufferedImage mascara) {
-
         int ancho = imagen.getWidth();
         int alto = imagen.getHeight();
-
         BufferedImage salida = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 
         for (int y = 0; y < alto; y++) {
-
             for (int x = 0; x < ancho; x++) {
-
                 if (mascara.getRGB(x, y) == Color.WHITE.getRGB()) {
-
                     salida.setRGB(x, y, imagen.getRGB(x, y));
-
                 } else {
-
                     salida.setRGB(x, y, Color.BLACK.getRGB());
-
                 }
             }
         }
-
         return salida;
     }
 
@@ -97,16 +78,12 @@ public class EjercicioFragmentos {
     public static BufferedImage aplicarBlending(BufferedImage fondo,
                                                 BufferedImage superior,
                                                 float alpha) {
-
         int ancho = fondo.getWidth();
         int alto = fondo.getHeight();
-
         BufferedImage salida = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 
         for (int y = 0; y < alto; y++) {
-
             for (int x = 0; x < ancho; x++) {
-
                 int p1 = fondo.getRGB(x, y);
                 int p2 = superior.getRGB(x, y);
 
@@ -127,22 +104,17 @@ public class EjercicioFragmentos {
                 salida.setRGB(x, y, pixel);
             }
         }
-
         return salida;
     }
 
     // LOGIC OP - XOR
     public static BufferedImage aplicarXOR(BufferedImage img1, BufferedImage img2) {
-
         int ancho = img1.getWidth();
         int alto = img1.getHeight();
-
         BufferedImage salida = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 
         for (int y = 0; y < alto; y++) {
-
             for (int x = 0; x < ancho; x++) {
-
                 int p1 = img1.getRGB(x, y);
                 int p2 = img2.getRGB(x, y);
 
@@ -151,11 +123,9 @@ public class EjercicioFragmentos {
                 int b = (p1 & 0xFF) ^ (p2 & 0xFF);
 
                 int pixel = (r << 16) | (g << 8) | b;
-
                 salida.setRGB(x, y, pixel);
             }
         }
-
         return salida;
     }
 }

@@ -1,4 +1,4 @@
-package tarea3.reduccion;
+package reduccion;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

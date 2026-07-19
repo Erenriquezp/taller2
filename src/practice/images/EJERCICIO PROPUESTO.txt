@@ -1,0 +1,160 @@
+EJERCICIO PROPUESTO
+"Implementar un filtro de transición Día → Noche utilizando la operación GL_MULT del Buffer de Acumulación.
+El programa debe generar 4 imágenes con factores de intensidad 1.0, 0.75, 0.50 y 0.25."
+-----------------------------------------
+RESOLUCIÓN DEL EJERCICIO		|
+Dentro del proyecto BufferAcumulacion	|
+-----------------------------------------
+
+Operaciones sobre Imágenes
+Grupos: 6-8
+Objetivo
+Desarrollar una aplicación en Java que procese imágenes digitales aplicando tres técnicas de
+gráficos por computadora: Stencil Test, Blending y operación lógica XOR.
+Requerimientos
+• Cargar dos imágenes desde archivos.
+• Crear una máscara (stencil) rectangular donde únicamente la región central sea visible.
+• Aplicar el stencil a la primera imagen, conservando los píxeles dentro de la máscara y
+pintando de negro el resto.
+• Redimensionar la segunda imagen para que tenga las mismas dimensiones que la
+imagen resultante del stencil.
+• Aplicar un blending entre ambas imágenes utilizando un factor de transparencia α = 0.6.
+• Aplicar una operación lógica XOR entre la imagen obtenida del blending y la segunda
+imagen.
+• Guardar las imágenes generadas como Stencil.jpg, Blending.jpg y ResultadoFinal.jpg.
+Resultados esperados
+El programa deberá generar correctamente las imágenes intermedias y la imagen final,
+evidenciando el uso de las tres técnicas de procesamiento de imágenes.
+
+------------------------------------------------------------------------
+
+Tema 8: Fragmentos y operaciones con fragmentos
+Grupos: G5 Y G9
+Enunciado
+Ejercicio: El Lente Revelador (Integración de Pruebas de Fragmentos)
+Objetivo: Componer una escena didáctica donde se evidencie claramente la acción individual y combinada del Stencil Test, Alpha Test y Depth Test utilizando un Z-Buffer explícito.
+Descripción del Escenario:
+Dispones de dos imágenes de idénticas dimensiones:
+•	Imagen A (Paisaje): Será nuestro entorno base. Se le asigna una profundidad de z = 10.0f.
+•	Imagen B (Universo): Actuará como un filtro mágico. Se le asigna una profundidad de z = 5.0f (más cerca de la cámara).
+Para construir la imagen final, debes implementar el siguiente algoritmo píxel por píxel:
+1.	Inicialización (El Lienzo y el Z-Buffer):
+o	Crea una imagen de salida.
+o	Crea una matriz bidimensional zBuffer del mismo ancho y alto que la imagen.
+o	Recorre la matriz y llénala con un valor inicial de 9999.0f (simulando una profundidad infinita).
+2.	Renderizado del Paisaje (Depth Test Base):
+o	Intenta dibujar cada píxel de la Imagen A en la pantalla. Como su profundidad (10.0f) es menor que 9999.0f, se dibujará y actualizará el Z-Buffer.
+3.	Renderizado del Universo (El Pipeline Didáctico):
+o	Stencil Test (La forma del lente): El Universo solo puede dibujarse dentro de un círculo central cuyo radio sea la tercera parte de la dimensión menor de la imagen (min(ancho, alto) / 3). Usa la fórmula (x-c_x)^2 + (y-c_y)^2 <= r^2. Si está fuera, descarta el píxel.
+o	Alpha Test (Estrellas vs Vacío): Si pasó el Stencil, calcula el brillo promedio del píxel del Universo: Promedio = (R+G+B)/3. Si el promedio es menor o igual a 128, asume que es "espacio oscuro", hazlo transparente y descártalo. Si es mayor a 128, son "estrellas brillantes" y avanzan.
+o	Depth Test (Superposición): Si el fragmento estelar pasó las dos pruebas anteriores, compara su profundidad (5.0f) con el valor actual del Z-Buffer en esa coordenada. Si es menor (que lo será, porque 5 es menor que 10), dibuja la estrella y actualiza el Z-Buffer.
+Resultado Esperado y Explicación Visual:
+La imagen final:
+•	Se ve Stencil: Porque el efecto estelar está perfectamente delimitado en un círculo central.
+•	Se ve Alpha: Porque dentro del círculo no se ve un "cuadrado de universo" sólido, sino que las partes oscuras desaparecieron, revelando el paisaje detrás.
+•	Se ve Depth: Porque las estrellas brillantes lograron sobreescribir los píxeles del paisaje al tener una coordenada Z menor.
+
+------------------------------------------------------------------------------------------------------------
+
+0
+
+Ejercicio consulta: Implementacion de Z-Buffer y Renderizado con Funcion Borde
+
+Objetivo:
+
+Desarrollar desde cero una aplicacion en Java (utilizando javax swing y java awt) que
+simule un motor de renderizado con percepción de profundidad. Deberá implementar la
+evaluación matemática de poligonos mediante funciones de borde (Edge Functions) y el
+algoritmo de Z-Buffer para la correcta eliminación de superficies ocultas.
+
+1. Especificaciones Tecnicas
+
+La aplicación debe contener una clase principal que herede de JPanel y funcione como el
+lienzo de dibujo. Deberá gestionar sus propios buffers de memoria en lugar de depender
+del orden de dibujado convencional de Java:
+
+· Resolución: El lienzo principal debe tener un tamaño fijo de 800 × 600 píxeles.
+. Color Buffer: Una matriz bidimensional (Color[I[]) que almacene el color de
+cada pixel en la pantalla.
+
+. Depth Buffer (Z-Buffer): Una matriz bidimensional (float[l[]) que almacene la
+profundidad actual de cada pixel, donde los valores varian de 0.0 (muy cerca del
+observador) a 1.0 (el fondo infinito).
+
+2. Lógica de Renderizado y Algoritmo
+
+Debe implementar un método de renderizado que ejecute los siguientes pasos en orden
+cada vez que se actualice la pantalla:
+
+. Limpieza de Buffers:
+
+Llenar todo el Color Buffer con un color de fondo (ej. Gris).
+
+o Reiniciar todos los valores del Z-Buffer a 1.0f (profundidad máxima).
+
+. Evaluación Matemática de Polígonos (Función de Borde):
+
+o Debe implementar una función matemática (producto cruz 2D) que evalúe
+de qué lado de un vector o arista se encuentra un punto (x, y).
+
+. Rasterización de Figuras:
+
+o Debe crear una función dibujarCuadrado(int x, int y, int tamaño, float z,
+Color color).
+
+o Esta función debe definir explícitamente los vértices de la figura en orden
+antihorario.
+
+o Debe recorrer un área de píxeles y evaluar la Función de Borde contra las
+4 aristas del cuadrado. Un píxel pertenece a la figura solo si la evaluación
+de todas las aristas arroja un valor ≥ 0.
+
+Clipping (Recorte de Pantalla):
+o El programa no debe colapsar si un cuadrado se sale de los límites de la
+pantalla. Solo se deben procesar los píxeles visibles dentro de la matriz de
+800 × 600.
+
+· Prueba de Profundidad (Z-Test):
+
+o Antes de pintar un pixel verificado geométricamente en el Color Buffer, el
+algoritmo debe consultar el Z-Buffer.
+o El píxel solo se pinta (y el Z-Buffer se actualiza) si la profundidad z del
+cuadrado actual es estrictamente menor que la profundidad almacenada
+previamente en esa coordenada.
+
+. Volcado a Pantalla:
+
+o Sobrescribir el método paintComponent(Graphies g) para que recorra el
+Color Buffer y dibuje en pantalla pixel por pixel (usando g.fillRect(x, y, 1,
+1)).
+
+3. Interfaz Gráfica de Usuario (GUI) y Controles
+
+La ventana principal (JFrame) debe estar dividida en dos áreas:
+
+· Centro: El panel de renderizado donde se visualizarán las figuras. Se deben
+renderizar constantemente dos cuadrados de tamaño 200 x 200, superpuestos
+espacialmente:
+
+Cuadrado 1: Posicion (100,100), Color Cian.
+
+Cuadrado 2: Posicion (250,200), Color Magenta.
+
+. Derecha: Un panel de controles con dos Sliders (JSlider).
+
+Un slider controlara la profundidad (Z) del cuadrado Cian y el otro la del
+cuadrado Magenta.
+
+o Los sliders deben manejar valores dinámicos que representen una
+profundidad desde 0.1 hasta 0.9.
+
+o Al mover cualquier slider, el lienzo debe recalcular el algoritmo y
+repintarse en tiempo real, demostrando que el cuadrado con menor Z
+siempre se superpone al otro de forma correcta, validando el algoritmo de
+profundidad.
+
+Entregables:
+
+Un archivo .java (o proyecto) compilable y funcional que cumpla con todos los requisitos
+mencionados.
+--------------------------------------------------------------------------

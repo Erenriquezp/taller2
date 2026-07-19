@@ -8,7 +8,6 @@ import java.io.File;
 
 public class ConvolucionOp {
     public static void main(String[] args) throws Exception {
-        // Un kernel 3x3 de blur con pesos iguales.
         float[] matrizKernel = {
                 1f/9, 1f/9, 1f/9,
                 1f/9, 1f/9, 1f/9,
@@ -24,6 +23,5 @@ public class ConvolucionOp {
         BufferedImage resultado = operacion.filter(imagenOriginal, null);
 
         ImageIO.write(resultado, "png", new File("src/practice/images/salida_convolucion_op.png"));
-        System.out.println("ConvolveOp generada en: src/practice/images/salida_convolucion_op.png");
     }
 }

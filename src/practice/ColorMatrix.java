@@ -38,7 +38,6 @@ public class ColorMatrix {
                     resultado.setRGB(x,y,pixelNuevo);
                 }
             }
-
             ImageIO.write(resultado, "png", salida);
         } catch (IOException e) {
             throw new RuntimeException(e);

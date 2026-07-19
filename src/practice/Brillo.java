@@ -15,10 +15,6 @@ public class Brillo {
 
         try {
             BufferedImage original = ImageIO.read(entrada);
-            if (original == null) {
-                System.out.println("No se pudo leer la imagen de entrada.");
-                return;
-            }
 
             int ancho = original.getWidth();
             int alto = original.getHeight();
@@ -41,9 +37,7 @@ public class Brillo {
                     resultado.setRGB(x, y, pixelNuevo);
                 }
             }
-
             ImageIO.write(resultado, "png", salida);
-            System.out.println("Filtro de brillo aplicado. Imagen guardada en: " + salida.getPath());
 
         } catch (IOException e) {
             System.err.println("Error de lectura/escritura: " + e.getMessage());
@@ -51,8 +45,6 @@ public class Brillo {
     }
 
     private static int clamp(int valor) {
-        //return Math.max(0, Math.min(255, valor));
         return Math.clamp(valor, 0, 255);
-
     }
 }
