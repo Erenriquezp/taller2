@@ -6,7 +6,7 @@ import java.io.File;
 
 public class ReduccionEstiramiento {
     public static void main(String[] args) throws Exception {
-        File entrada = new File("src/practice/images/original.png");
+        File entrada = new File("src/practice/images/original2.png");
         File salida = new File("src/practice/images/salida_reduccion_estiramiento.png");
 
         BufferedImage imagenOriginal = ImageIO.read(entrada);
@@ -42,7 +42,7 @@ public class ReduccionEstiramiento {
                 // g = (g << 4) | g;
                 // b = (b << 4) | b;
 
-                // Metodo HEXADECIMAL (alternativa): replicar con mascara
+                // Metodo HEXADECIMAL (alternativa): replicar con máscara
                 // r = (r << 4) | (r & 0x0F);
                 // g = (g << 4) | (g & 0x0F);
                 // b = (b << 4) | (b & 0x0F);

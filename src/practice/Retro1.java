@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Retro1 {
 
     public static void main(String[] args) {
-        File entrada = new File("src/practice/images/original.png");
+        File entrada = new File("src/practice/images/original2.png");
         File salida  = new File("src/practice/images/salida_retro1.png");
 
         int n = 4; // niveles posibles por canal: 0, 85, 170, 255

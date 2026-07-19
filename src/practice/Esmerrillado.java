@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Esmerrillado {
 
     public static void main(String[] args) {
-        File entrada = new File("src/practice/images/original.png");
+        File entrada = new File("src/practice/images/original2.png");
         File salida  = new File("src/practice/images/salida_esmerilado.png");
 
         try {
@@ -21,7 +21,6 @@ public class Esmerrillado {
             int ancho = original.getWidth();
             int alto = original.getHeight();
 
-            // ARGB obligatorio para poder guardar transparencia
             BufferedImage resultado = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_ARGB);
 
             for (int y = 0; y < alto; y++) {
@@ -32,7 +31,6 @@ public class Esmerrillado {
                     int g = (pixel >> 8) & 0xFF;
                     int b =  pixel & 0xFF;
 
-                    // Brillo promedio del pixel (0 = negro, 255 = blanco)
                     int brillo = (r + g + b) / 3;
 
                     // Mapeo lineal: brillo 0 -> alpha 50 (casi transparente)

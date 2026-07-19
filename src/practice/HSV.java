@@ -9,7 +9,7 @@ import java.io.IOException;
 public class HSV {
 
     public static void main(String[] args) {
-        File entrada = new File("src/practice/images/original.png");
+        File entrada = new File("src/practice/images/original2.png");
         File salida = new File("src/practice/images/salida_hsv.png");
 
         // HSV Tono, saturacion, brillo
@@ -36,7 +36,6 @@ public class HSV {
                     int g = (pixel >> 8) & 0xFF;
                     int b = pixel & 0xFF;
 
-                    // Convertir a HSV para manipular color de forma mas intuitiva
                     float[] hsv = Color.RGBtoHSB(r, g, b, null);
 
                     float h = hsv[0];

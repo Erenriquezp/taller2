@@ -8,7 +8,7 @@ import java.io.IOException;
 public class ReduccionYEstiramiento {
 
     public static void main(String[] args) {
-        File archivoEntrada = new File("src/tarea3/images/original.png");
+        File archivoEntrada = new File("src/tarea3/images/original2.png");
 
         try {
             BufferedImage imagenOriginal = ImageIO.read(archivoEntrada);

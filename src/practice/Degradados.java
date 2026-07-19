@@ -11,14 +11,12 @@ public class Degradados {
 
         BufferedImage salida = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
 
-        // Formulas base para otros degradados simples (t siempre queda en rango 0..1):
         // Derecha -> izquierda: t = 1f - ((float) x / (ancho - 1));
         // Arriba -> abajo:      t = (float) y / (alto - 1);
         // Abajo -> arriba:      t = 1f - ((float) y / (alto - 1));
 
         for (int y = 0; y < alto; y++) {
             for (int x = 0; x < ancho; x++) {
-                // 0 en el borde izquierdo, 1 en el derecho
                 // float t = (float) x / (ancho - 1);
                 float t = 1f - ((float) x / (ancho - 1));
                 //int gris = Math.round(255 * t);

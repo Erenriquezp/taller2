@@ -10,7 +10,7 @@ import java.io.IOException;
 public class TripleBlending {
 
     public static void main(String[] args) {
-        File imgFile1 = new File("src/practice/images/original.png");
+        File imgFile1 = new File("src/practice/images/original2.png");
         File imgFile2 = new File("src/transparence/fondo.jpg");
         File imgFile3 = new File("src/transparence/fondo3.jpg");
         File salida = new File("src/practice/images/salida_triple_blending.jpg");

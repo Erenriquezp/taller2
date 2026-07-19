@@ -8,10 +8,10 @@ import java.io.IOException;
 public class Brillo {
 
     public static void main(String[] args) {
-        File entrada = new File("src/practice/images/original.png");
+        File entrada = new File("src/practice/images/original2.png");
         File salida = new File("src/practice/images/salida_brillo.png");
 
-        int brillo = 40; // Prueba con -40 para oscurecer
+        int brillo = 40;
 
         try {
             BufferedImage original = ImageIO.read(entrada);
@@ -33,7 +33,6 @@ public class Brillo {
                     int g = (pixel >> 8) & 0xFF;
                     int b = pixel & 0xFF;
 
-                    // Formula de brillo con clamp
                     r = clamp(r + brillo);
                     g = clamp(g + brillo);
                     b = clamp(b + brillo);

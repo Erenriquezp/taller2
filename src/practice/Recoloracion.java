@@ -6,10 +6,9 @@ import java.io.File;
 
 public class Recoloracion {
     public static void main(String[] args) throws Exception {
-        File entrada = new File("src/taller/images/original.png");
+        File entrada = new File("src/taller/images/original2.png");
         File salida = new File("src/practice/images/salida_recoloracion.png");
 
-        // Cambia solo estos 3 valores para elegir el color final.
         int tonoR = 170;
         int tonoG = 90;
         int tonoB = 255;
@@ -29,7 +28,6 @@ public class Recoloracion {
                 int g = (p >> 8) & 0xFF;
                 int b = p & 0xFF;
 
-                // Luminancia: mantiene luces y sombras, solo cambia el tinte.
                 double lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
                 int nr = clamp((int) Math.round((lum * tonoR) / 255.0));

@@ -6,11 +6,9 @@ import java.io.File;
 
 public class Convolucion {
     public static void main(String[] args) throws Exception {
-        File entrada = new File("src/practice/images/original.png");
+        File entrada = new File("src/practice/images/original2.png");
         File salida = new File("src/practice/images/salida_convolucion.png");
 
-        // Cambia esta matriz para otro efecto.
-        // Este ejemplo esta pensado para una matriz 3x3.
         float[][] matriz = {
                 {1f / 9f, 1f / 9f, 1f / 9f},
                 {1f / 9f, 1f / 9f, 1f / 9f},

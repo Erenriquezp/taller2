@@ -21,9 +21,7 @@ public class DegradadoRadial {
                 double dy = y - cy;
                 double dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Centro claro (1), bordes oscuros (0).
                 double t = 1.0 - (dist / distMax);
-                // t = Math.max(0.0, Math.min(1.0, t));
                 t = Math.clamp(t, 0.0, 1.0);
 
                 int gris = (int) Math.round(255 * t);
